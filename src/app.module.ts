@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DbAccessController } from './db_access/db_access.controller';
 import { RecetteModule } from './recette/recette.module';
 
 @Module({
@@ -9,7 +8,7 @@ import { RecetteModule } from './recette/recette.module';
     
     RecetteModule
   ],
-  controllers: [AppController, DbAccessController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

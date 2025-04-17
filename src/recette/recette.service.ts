@@ -4,8 +4,23 @@ import { UpdateRecetteDto } from './dto/update-recette.dto';
 
 @Injectable()
 export class RecetteService {
+  recettes: any;
   create(createRecetteDto: CreateRecetteDto) {
-    return 'This action adds a new recette';
+    // Assuming you are using a database like TypeORM or Prisma, here's an example using a simple in-memory array for demonstration purposes.
+
+    const newRecette = {
+      id: Date.now(), // Generate a unique ID (replace with DB-generated ID if using a database)
+      ...createRecetteDto,
+    };
+
+    // Simulate saving to a database or in-memory storage
+    // Replace this with actual database logic
+    this.recettes = this.recettes || [];
+    this.recettes.push(newRecette);
+
+    return newRecette;
+
+
   }
 
   findAll() {

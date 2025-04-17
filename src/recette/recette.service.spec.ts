@@ -15,4 +15,10 @@ describe('RecetteService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should create a recette', () => {
+    const dto = { name: 'Recette 1', description: 'Test recette' };
+    const result = service.create(dto);
+    expect(result).toHaveProperty('id');
+  });
 });
