@@ -1,13 +1,37 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
+/*
+
+idR: number;
+
+    @Column()
+    nom:string;
+
+    @Column()
+    description:string;
+
+    @Column()
+    note: number;
+
+    @Column()//cette chaine de caractère correspond à une image (PATH)
+    Image: string;
+
+    @Column()
+    origine: string;
+
+*/ 
+
 export class Migrations1744923957997 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
             CREATE TABLE recette (
-              id SERIAL PRIMARY KEY,
-              name VARCHAR(255) NOT NULL,
-              description TEXT
+              idR SERIAL PRIMARY KEY,
+              note INTEGER,
+              nom VARCHAR(255) NOT NULL,
+              description TEXT,
+              Image TEXT,
+              origine TEXT
             );
           `);
     }
