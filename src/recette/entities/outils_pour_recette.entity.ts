@@ -1,15 +1,17 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Outils } from "./outils.entity";
-import { Recette } from "./recette.entity";
+import { Column, Entity, ManyToOne, PrimaryColumn, JoinColumn } from "typeorm";
+import { outils } from "./outils.entity";
+import { recette } from "./recette.entity";
 
 @Entity('outils_pour_recette')
-export class Outils_pour_recette {
-    @ManyToOne(() => Outils, (outils) => outils.idO)
-    @PrimaryGeneratedColumn()
-    idOutils: number;
+export class outils_pour_recette {
+    @ManyToOne(() => outils, (outils) => outils.ido)
+    @JoinColumn({ name: 'idoutils' })
+    @PrimaryColumn()
+    idoutils: number; // id de l'outil
 
-    @ManyToOne(() => Recette, (Recette) => Recette.idR)
-    @PrimaryGeneratedColumn()
-    idRecette: number;//id de la recette dans laquelle se trouve l'outil
+    @ManyToOne(() => recette, (recette) => recette.idr)
+    @JoinColumn({ name: 'idrecette' })
+    @PrimaryColumn()
+    idrecette: number; // id de la recette dans laquelle se trouve l'outil
 
 }

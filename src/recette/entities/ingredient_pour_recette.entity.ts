@@ -1,22 +1,24 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Recette } from "./recette.entity";
-import { Ingredient } from "./ingredient.entity";
+import { Column, Entity, ManyToOne, PrimaryColumn, JoinColumn } from "typeorm";
+import { recette } from "./recette.entity";
+import { ingredient } from "./ingredient.entity";
 
 @Entity('ingredient_pour_recette')
-export class Ingredient_pour_recette {
+export class ingredient_pour_recette {
 
-    @ManyToOne(() => Recette, (recette) => recette.idR)
-    @PrimaryGeneratedColumn()
-    idRecette: number;//id de la recette dans laquelle se trouve l'ingrédient
+    @ManyToOne(() => recette, (recette) => recette.idr)
+    @JoinColumn({ name: 'idrecette' })
+    @PrimaryColumn()
+    idrecette: number; // id de la recette dans laquelle se trouve l'ingrédient
 
-    @ManyToOne(() => Ingredient, (ingredient) => ingredient.idI)
-    @PrimaryGeneratedColumn()
-    idIngredient: number;//id de l'ingrédient dans la recette
+    @ManyToOne(() => ingredient, (ingredient) => ingredient.idi)
+    @JoinColumn({ name: 'idingredient' })
+    @PrimaryColumn()
+    idingredient: number; // id de l'ingrédient dans la recette
 
     @Column()
-    quantite:number;//quantité de l'ingrédient dans la recette
+    quantite: number; // quantité de l'ingrédient dans la recette
 
     @Column()
-    unite:String;//gramme, litre, etc...
+    unite: string; // gramme, litre, etc.
 
 }

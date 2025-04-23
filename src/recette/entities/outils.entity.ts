@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('outils')
-export class Outils {
+export class outils {
     @PrimaryGeneratedColumn()
-    idO: number;
+    ido: number;
 
     @Column()
     nom:string;

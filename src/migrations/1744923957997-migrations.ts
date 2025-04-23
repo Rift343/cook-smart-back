@@ -25,7 +25,7 @@ export class Migrations1744923957997 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE recette (
+            CREATE TABLE Recette (
               idR SERIAL PRIMARY KEY,
               note INTEGER,
               nom VARCHAR(255) NOT NULL,
@@ -38,7 +38,7 @@ export class Migrations1744923957997 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            DROP TABLE recette;
+            DROP TABLE Recette;
           `);
     }
 

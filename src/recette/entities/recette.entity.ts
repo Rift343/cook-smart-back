@@ -1,14 +1,14 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Ingredient_pour_recette } from "./ingredient_pour_recette.entity";
-import { Outils_pour_recette } from "./outils_pour_recette.entity";
+import { ingredient_pour_recette } from "./ingredient_pour_recette.entity";
+import { outils_pour_recette } from "./outils_pour_recette.entity";
 
 @Entity('recette')
-export class Recette {
+export class recette {
     
-    @OneToMany(() => Ingredient_pour_recette, (ingredient_pour_recette) => ingredient_pour_recette.idRecette)   //relation entre recette et ingredient_pour_recette
-    @OneToMany(() => Outils_pour_recette, (outils_pour_recette) => outils_pour_recette.idRecette)   //relation entre recette et outils_pour_recette
+    @OneToMany(() => ingredient_pour_recette, (ingredient_pour_recette) => ingredient_pour_recette.idrecette)   //relation entre recette et ingredient_pour_recette
+    @OneToMany(() => outils_pour_recette, (outils_pour_recette) => outils_pour_recette.idrecette)   //relation entre recette et outils_pour_recette
     @PrimaryGeneratedColumn()//id de la recette
-    idR: number;
+    idr: number;
 
     @Column()
     nom:string;
@@ -20,7 +20,7 @@ export class Recette {
     note: number;
 
     @Column()//cette chaine de caractère correspond à une image (PATH)
-    Image: string;
+    image: string;
 
     @Column()
     origine: string;

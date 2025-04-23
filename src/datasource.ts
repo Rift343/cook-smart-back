@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 
-export default new DataSource({
+export const AppDataSource = new DataSource({
     type: 'postgres',
     host: 'dpg-d00jd1hr0fns73eboad0-a.frankfurt-postgres.render.com',
     password: 'vu8oHx3vp0RAjv1JfPXok201ICGAnYOd', // Mot de passe fourni par Render
