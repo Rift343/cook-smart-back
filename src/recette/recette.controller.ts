@@ -6,6 +6,13 @@ import { UpdateRecetteDto } from './dto/update-recette.dto';
 @Controller('recette')
 export class RecetteController {
   constructor(private readonly recetteService: RecetteService) {}
+  
+
+  @Get('getAll')
+  getAll(){
+    console.log("getAllRecette");
+    return this.recetteService.getAllRecette();
+  }
 
   @Post()
   create(@Body() createRecetteDto: CreateRecetteDto) {
