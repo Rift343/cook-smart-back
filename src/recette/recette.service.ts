@@ -7,6 +7,8 @@ import { ingredient } from './entities/ingredient.entity';
 import { outils } from './entities/outils.entity';
 import { ingredient_pour_recette } from './entities/ingredient_pour_recette.entity';
 import { outils_pour_recette } from './entities/outils_pour_recette.entity';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class RecetteService {
@@ -125,6 +127,25 @@ export class RecetteService {
         ingredients: recetteIngredients,
         outils: recetteTools,
       };
+    });
+
+    response = response.map((recette) => {
+      const imagePath = path.resolve(__dirname, '../../ressource/', recette.image);
+      return {
+        ...recette,
+        image: `data:image/png;base64,${fs.readFileSync(imagePath).toString('base64')}`,
+      };
+    });
+    
+    console.log('Current path:', __dirname);
+
+    const resourcePath = path.resolve(__dirname, '../../ressource/');
+    fs.readdir(resourcePath, (err, files) => {
+      if (err) {
+        console.error('Error reading directory:', err);
+        return;
+      }
+      console.log('Files in ../../ressource/:', files);
     });
 
     return response;
