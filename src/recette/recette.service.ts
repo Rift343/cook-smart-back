@@ -9,9 +9,11 @@ import { ingredient_pour_recette } from './entities/ingredient_pour_recette.enti
 import { outils_pour_recette } from './entities/outils_pour_recette.entity';
 import * as fs from 'fs';
 import * as path from 'path';
+import { console } from 'inspector';
 
 @Injectable()
 export class RecetteService {
+  
   recettes: any;
 
   dataSource: DataSource;
@@ -214,9 +216,44 @@ export class RecetteService {
       console.log('Files in ../../ressource/:', files);
     });
 
-    response = response.filter((recette) => recette.idr === id);
+    response = response.filter((recette) => recette.idr == id);
 
     return response;
+  }
+
+
+  async getRecetteForIngredient(ingredient: string) {
+    console.log("cocou");
+    let response: {
+      idr: number;
+      nom: string;
+      description: string;
+      note: number;
+      image: string;
+      origine: string;
+      ingredients: (ingredient | undefined)[];
+      outils: (outils | undefined)[];
+    }[] = [];
+
+    console.log("cocou");
+
+    response = await this.getAllRecette();
+
+    ingredient.toLowerCase();
+    const ingredients = ingredient.split("-");
+    console.log(ingredients);
+
+    let response2:any = []; //on utilise les même objet que response
+
+    response.forEach(element => {
+      element.ingredients.forEach(ing => {
+        if (ing && ingredients.includes(ing.nom.toLowerCase()) ) {
+          response2.push(element);
+        }
+      }
+    );
+    });
+    return response2;
   }
 
 }

@@ -20,6 +20,12 @@ export class RecetteController {
     return this.recetteService.getRecetteById(id);
   }
 
+  @Get('getRecetteForIngredient/:ingredient')
+  getRecetteForIngredients(@Param('ingredient') ingredient: string){
+    console.log("getRecetteForIngredient");
+    return this.recetteService.getRecetteForIngredient(ingredient);
+  }
+
   @Post()
   create(@Body() createRecetteDto: CreateRecetteDto) {
     return this.recetteService.create(createRecetteDto);
