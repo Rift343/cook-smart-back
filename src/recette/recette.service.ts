@@ -150,4 +150,73 @@ export class RecetteService {
 
     return response;
   }
+
+  async getRecetteById(id: number) {
+
+    let response: {
+      idr: number;
+      nom: string;
+      description: string;
+      note: number;
+      image: string;
+      origine: string;
+      ingredients: (ingredient | undefined)[];
+      outils: (outils | undefined)[];
+    }[] = [];
+
+    const recettes = await this.dataSource.getRepository(recette).find();
+    recettes.forEach(async (recette) => {console.log(recette);});
+
+    const ingredients = await this.dataSource.getRepository(ingredient).find();
+    ingredients.forEach(async (ingredient) => {console.log(ingredient);});
+
+    const tools = await this.dataSource.getRepository(outils).find();
+    tools.forEach(async (outils) => {console.log(outils);});
+
+    const ingredientsForRecipe = await this.dataSource.getRepository(ingredient_pour_recette).find();
+    ingredientsForRecipe.forEach(async (ingredient_pour_recette) => {console.log(ingredient_pour_recette);});
+
+    const toolsForRecipe = await this.dataSource.getRepository(outils_pour_recette).find();
+    toolsForRecipe.forEach(async (outils_pour_recette) => {console.log(outils_pour_recette);});
+
+    response = recettes.map((recette) => {
+      const recetteIngredients = ingredientsForRecipe
+        .filter((ifr) => ifr.idingredient === recette.idr)
+        .map((ifr) => ingredients.find((ingredient) => ingredient.idi === ifr.idingredient));
+
+      const recetteTools = toolsForRecipe
+        .filter((tfr) => tfr.idrecette === recette.idr)
+        .map((tfr) => tools.find((tool) => tool.ido === tfr.idoutils));
+
+      return {
+        ...recette,
+        ingredients: recetteIngredients,
+        outils: recetteTools,
+      };
+    });
+
+    response = response.map((recette) => {
+      const imagePath = path.resolve(__dirname, '../../ressource/', recette.image);
+      return {
+        ...recette,
+        image: `data:image/png;base64,${fs.readFileSync(imagePath).toString('base64')}`,
+      };
+    });
+    
+    console.log('Current path:', __dirname);
+
+    const resourcePath = path.resolve(__dirname, '../../ressource/');
+    fs.readdir(resourcePath, (err, files) => {
+      if (err) {
+        console.error('Error reading directory:', err);
+        return;
+      }
+      console.log('Files in ../../ressource/:', files);
+    });
+
+    response = response.filter((recette) => recette.idr === id);
+
+    return response;
+  }
+
 }

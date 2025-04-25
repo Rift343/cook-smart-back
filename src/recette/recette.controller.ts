@@ -14,6 +14,12 @@ export class RecetteController {
     return this.recetteService.getAllRecette();
   }
 
+  @Get('getById/:id')
+  getById(@Param('id') id: number){
+    console.log("getById");
+    return this.recetteService.getRecetteById(id);
+  }
+
   @Post()
   create(@Body() createRecetteDto: CreateRecetteDto) {
     return this.recetteService.create(createRecetteDto);
