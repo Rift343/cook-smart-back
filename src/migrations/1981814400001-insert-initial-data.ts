@@ -4,9 +4,9 @@ export class InsertInitialData1971814400001 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     // Insert data into the 'recette' table
     await queryRunner.query(`
-      INSERT INTO recette (nom, description, note, Image, origine) VALUES
-      ('Recette 1', 'Description de la recette 1', 5, 'path/to/image1.jpg', 'France'),
-      ('Recette 2', 'Description de la recette 2', 4, 'path/to/image2.jpg', 'Italy');
+      INSERT INTO recette (nom, description, note, Image, origine, vegan, sansgluten, halal) VALUES
+      ('Recette 1', 'Description de la recette 1', 5, 'path/to/image1.jpg', 'France', true, false, true),
+      ('Recette 2', 'Description de la recette 2', 4, 'path/to/image2.jpg', 'Italy', false, true, false);
     `);
 
     // Insert data into the 'ingredient' table

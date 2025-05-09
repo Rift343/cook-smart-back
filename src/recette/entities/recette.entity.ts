@@ -25,4 +25,11 @@ export class recette {
     @Column()
     origine: string;
 
+    @Column()
+    vegan: boolean;
+    @Column()
+    sansgluten: boolean;
+    @Column()
+    halal: boolean;
+
 }

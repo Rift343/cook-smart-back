@@ -31,7 +31,10 @@ export class Migrations1744923957997 implements MigrationInterface {
               nom VARCHAR(255) NOT NULL,
               description TEXT,
               Image TEXT,
-              origine TEXT
+              origine TEXT,
+              vegan BOOLEAN,
+              sansgluten BOOLEAN,
+              halal BOOLEAN
             );
           `);
     }
