@@ -45,11 +45,11 @@ export class RecetteService {
     beforeAll(async () => {
       this.dataSource = new DataSource({
         type: 'postgres',
-        host: 'dpg-d00jd1hr0fns73eboad0-a.frankfurt-postgres.render.com',
+        host: 'dpg-d0lfsjjuibrs73a9i5t0-a.frankfurt-postgres.render.com',
         port: 5432,
         username: 'root',
-        password: 'vu8oHx3vp0RAjv1JfPXok201ICGAnYOd',
-        database: 'dbcooksmart',
+        password: '6Q1i162772P9HMMI9UP9qKqVxptpfivI',
+        database: 'dbcooksmart_ndc3',
         ssl: { rejectUnauthorized: false },
         entities: [recette, ingredient, outils, ingredient_pour_recette, outils_pour_recette],
       });
