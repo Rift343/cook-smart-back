@@ -9,7 +9,7 @@ export class InsertInitialData1971814400001 implements MigrationInterface {
       'Tiramisu',
       'Séparer les blancs des jaunes;Fouetter les jaunes avec le sucre;Ajouter le mascarpone;Monter les blancs en neige;Incorporer délicatement les blancs;Tremper les biscuits dans le café@120;Alterner biscuits et crème;Réserver au frais@240',
       5,
-      'path/to/tiramusu.jpg',
+      'path/to/tiramisu.jpg',
       'France',
       false,
       false,
