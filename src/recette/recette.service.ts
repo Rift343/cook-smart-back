@@ -192,17 +192,26 @@ export class RecetteService {
 
     response = recettes.map((recette) => {
       const recetteIngredients = ingredientsForRecipe
-        .filter((ifr) => ifr.idingredient === recette.idr)
-        .map((ifr) => ingredients.find((ingredient) => ingredient.idi === ifr.idingredient));
+      .filter((ifr) => ifr.idrecette === recette.idr)
+      .map((ifr) => {
+        const ingredientDetails = ingredients.find((ingredient) => ingredient.idi === ifr.idingredient);
+        return ingredientDetails
+        ? {
+          ...ingredientDetails,
+          quantite: ifr.quantite,
+          unite: ifr.unite,
+          }
+        : undefined;
+      });
 
       const recetteTools = toolsForRecipe
-        .filter((tfr) => tfr.idrecette === recette.idr)
-        .map((tfr) => tools.find((tool) => tool.ido === tfr.idoutils));
+      .filter((tfr) => tfr.idrecette === recette.idr)
+      .map((tfr) => tools.find((tool) => tool.ido === tfr.idoutils));
 
       return {
-        ...recette,
-        ingredients: recetteIngredients,
-        outils: recetteTools,
+      ...recette,
+      ingredients: recetteIngredients,
+      outils: recetteTools,
       };
     });
 
@@ -224,7 +233,6 @@ export class RecetteService {
       }
       console.log('Files in ../../ressource/:', files);
     });
-
     response = response.filter((recette) => recette.idr == id);
 
     return response;
